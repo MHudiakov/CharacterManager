@@ -1,4 +1,6 @@
-﻿using Infrastructure.Persistence;
+﻿using Application.Contracts;
+using Infrastructure.Cache;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,10 @@ public static class DependencyInjection
 
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<ApplicationDbContextInitializer>();
+
+        services.AddMemoryCache();
+
+        services.AddScoped<ICacheService, CacheService>();
 
         return services;
     }

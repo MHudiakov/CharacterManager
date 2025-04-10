@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Application.Contracts;
 
 namespace Infrastructure.Persistence;
 

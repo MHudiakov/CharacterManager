@@ -13,5 +13,5 @@ public class Character : BaseEntity
 
     public int LocationId { get; set; }
 
-    public Location? Location { get; set; }
+    public required Location Location { get; set; }
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence;
+namespace Application.Contracts;
 
 public interface IApplicationDbContext
 {
