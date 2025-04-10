@@ -1,4 +1,6 @@
-﻿using Application.Common.Models;
+﻿using Application.Characters.Models;
+using Application.Common;
+using Application.Common.Models;
 using Application.Contracts;
 using AutoMapper;
 using MediatR;
@@ -14,8 +16,6 @@ public class GetCharactersWithPaginationQueryHandler : IRequestHandler<GetCharac
 
     private readonly IMapper _mapper;
 
-    private const string CacheKey = "characters_cache_key";
-    
     private const int CacheDurationMinutes = 5;
 
     public GetCharactersWithPaginationQueryHandler(IApplicationDbContext context, ICacheService cacheService, IMapper mapper)
@@ -27,7 +27,7 @@ public class GetCharactersWithPaginationQueryHandler : IRequestHandler<GetCharac
 
     public async Task<GetCharactersWithPaginationResponse> Handle(GetCharactersWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        var cachedData = await _cacheService.GetCachedDataAsync<PaginatedList<CharacterDto>>(CacheKey);
+        var cachedData = await _cacheService.GetCachedDataAsync<PaginatedList<CharacterDto>>(CacheKeys.Characters);
 
         if (cachedData != null)
         {
@@ -53,7 +53,7 @@ public class GetCharactersWithPaginationQueryHandler : IRequestHandler<GetCharac
 
         var paginatedList = new PaginatedList<CharacterDto>(characterDtos, totalCount, request.PageNumber, request.PageSize);
 
-        await _cacheService.SetCacheAsync(CacheKey, paginatedList, TimeSpan.FromMinutes(CacheDurationMinutes));
+        await _cacheService.SetCacheAsync(CacheKeys.Characters, paginatedList, TimeSpan.FromMinutes(CacheDurationMinutes));
 
         return new GetCharactersWithPaginationResponse
         {
