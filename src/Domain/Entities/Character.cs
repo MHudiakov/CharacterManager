@@ -11,7 +11,7 @@ public class Character : BaseEntity
     
     public required string Species { get; set; }
 
-    public int LocationId { get; set; }
+    public int? LocationId { get; set; }
 
     public Location? Location { get; set; }
 }
