@@ -12,9 +12,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public ApplicationDbContext() { }
 
-    public DbSet<Character> Characters => Set<Character>();
+    public virtual DbSet<Character> Characters => Set<Character>();
 
-    public DbSet<Location> Locations => Set<Location>();
+    public virtual DbSet<Location> Locations => Set<Location>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

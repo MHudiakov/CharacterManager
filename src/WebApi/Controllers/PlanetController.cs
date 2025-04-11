@@ -21,7 +21,7 @@ public class PlanetController : ApiController
 
         var response = await Mediator.Send(query, cancellationToken);
 
-        Response.Headers.Append("X-Fetched-From-Database", response.IsFetchedFromDatabase.ToString());
+        Response.Headers.Append("from-database", response.IsFetchedFromDatabase.ToString());
 
         return Ok(response.Characters);
     }

@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper.ApiClient", "src\sc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper.Runner", "src\scraper\Scraper.Runner\Scraper.Runner.csproj", "{67E33F76-573A-40D6-9EEF-B4C67F1ACE2C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scraper", "scraper", "{B157D960-8D51-4C51-9473-31FE2ABF8D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper.Runner.UnitTests", "tests\scraper\Scraper.Runner.UnitTests\Scraper.Runner.UnitTests.csproj", "{386BA610-56FA-4CF4-9B03-0DF6076AA0A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{67E33F76-573A-40D6-9EEF-B4C67F1ACE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67E33F76-573A-40D6-9EEF-B4C67F1ACE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E33F76-573A-40D6-9EEF-B4C67F1ACE2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386BA610-56FA-4CF4-9B03-0DF6076AA0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386BA610-56FA-4CF4-9B03-0DF6076AA0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386BA610-56FA-4CF4-9B03-0DF6076AA0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386BA610-56FA-4CF4-9B03-0DF6076AA0A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +71,7 @@ Global
 		{17CBCF8C-9AEE-414D-B2C6-18114E2F80AF} = {21364F39-9D51-42C2-96EE-06664D63C0E1}
 		{B4D13171-02DC-4978-B1BE-3A0D313D1701} = {17CBCF8C-9AEE-414D-B2C6-18114E2F80AF}
 		{67E33F76-573A-40D6-9EEF-B4C67F1ACE2C} = {17CBCF8C-9AEE-414D-B2C6-18114E2F80AF}
+		{B157D960-8D51-4C51-9473-31FE2ABF8D64} = {F3E0973D-2EC3-457F-A7A8-A9D93BD8A1CC}
+		{386BA610-56FA-4CF4-9B03-0DF6076AA0A5} = {B157D960-8D51-4C51-9473-31FE2ABF8D64}
 	EndGlobalSection
 EndGlobal
