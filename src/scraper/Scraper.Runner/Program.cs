@@ -56,7 +56,6 @@ static void ConfigureServices(IServiceCollection services, IConfiguration config
 
     services.AddHttpClient<IRickAndMortyApiClient, RickAndMortyApiClient>(client =>
         {
-            // Here we can inject IOptions instead. But until we don't have any other params for the client, for simplicity we can leave it like that
             client.BaseAddress = new Uri(configuration.GetValue<string>("RickAndMortyApiBaseUrl")!);
             client.Timeout = TimeSpan.FromMinutes(5);
         })

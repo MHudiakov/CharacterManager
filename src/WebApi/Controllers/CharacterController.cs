@@ -37,6 +37,11 @@ public class CharacterController : ApiController
         [FromBody] AddCharacterCommand command,
         CancellationToken cancellationToken = default)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         try
         {
             var characterDto = await Mediator.Send(command, cancellationToken);

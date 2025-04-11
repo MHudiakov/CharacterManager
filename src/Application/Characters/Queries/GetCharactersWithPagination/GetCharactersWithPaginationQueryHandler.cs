@@ -27,7 +27,9 @@ public class GetCharactersWithPaginationQueryHandler : IRequestHandler<GetCharac
 
     public async Task<GetCharactersWithPaginationResponse> Handle(GetCharactersWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        var cachedData = await _cacheService.GetCachedDataAsync<PaginatedList<CharacterDto>>(CacheKeys.Characters);
+        var cacheKey = $"{CacheKeys.Characters}_{request.PageNumber}_{request.PageSize}";
+
+        var cachedData = await _cacheService.GetCachedDataAsync<PaginatedList<CharacterDto>>(cacheKey);
 
         if (cachedData != null)
         {
@@ -53,7 +55,7 @@ public class GetCharactersWithPaginationQueryHandler : IRequestHandler<GetCharac
 
         var paginatedList = new PaginatedList<CharacterDto>(characterDtos, totalCount, request.PageNumber, request.PageSize);
 
-        await _cacheService.SetCacheAsync(CacheKeys.Characters, paginatedList, TimeSpan.FromMinutes(CacheDurationMinutes));
+        await _cacheService.SetCacheAsync(cacheKey, paginatedList, TimeSpan.FromMinutes(CacheDurationMinutes));
 
         return new GetCharactersWithPaginationResponse
         {

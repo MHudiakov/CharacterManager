@@ -26,7 +26,7 @@ public class GetCharactersByLocationQueryHandler : IRequestHandler<GetCharacters
 
     public async Task<GetCharactersByLocationResponse> Handle(GetCharactersByLocationQuery request, CancellationToken cancellationToken)
     {
-        var cacheKey = $"{CacheKeys.CacheByLocationPrefix}{request.Location.ToLower()}";
+        var cacheKey = $"{CacheKeys.CacheByLocationPrefix}{request.Location.ToLower()}_{request.PageNumber}_{request.PageSize}";
 
         var cachedData = await _cacheService.GetCachedDataAsync<PaginatedList<CharacterByLocationDto>>(cacheKey);
 
@@ -41,7 +41,7 @@ public class GetCharactersByLocationQueryHandler : IRequestHandler<GetCharacters
 
         var charactersQuery = _context.Characters
             .Include(c => c.Location)
-            .Where(c => c.Location!.Name.ToLower() == request.Location.ToLower())
+            .Where(c => c.Location != null && c.Location.Name.ToUpper() == request.Location.ToUpper())
             .AsNoTracking();
 
         var totalCount = await charactersQuery.CountAsync(cancellationToken);

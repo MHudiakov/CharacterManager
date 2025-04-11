@@ -1,5 +1,4 @@
 ﻿using Application.Characters.Models;
-using Application.Common;
 using Application.Common.Exceptions;
 using Application.Contracts;
 using AutoMapper;
@@ -46,8 +45,7 @@ public class AddCharacterCommandHandler : IRequestHandler<AddCharacterCommand, C
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        await _cacheService.ClearCacheAsync(CacheKeys.Characters);
-        await _cacheService.ClearCacheAsync($"{CacheKeys.CacheByLocationPrefix}{character.Location!.Name.ToLower()}");
+        await _cacheService.ClearCacheAsync();
 
         var characterDto = _mapper.Map<CharacterDto>(character);
 

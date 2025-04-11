@@ -42,11 +42,14 @@ public class ScraperService : IScraperService
             // Characters also might be loaded via Task.WhenAll() as locations, but here it won't provide significant performance improvement
             var characterResponse = await _rickAndMortyApiClient.GetCharactersAsync(page, cancellationToken);
 
-            var characterEnrichmentTasks = characterResponse.Results.Select(character => EnrichCharacterWithLocation(character, cancellationToken)).ToList();
+            var characterEnrichmentTasks = characterResponse.Results.Select(character 
+                => EnrichCharacterWithLocation(character, cancellationToken)).ToList();
+            
             var characters = await Task.WhenAll(characterEnrichmentTasks);
 
             await _context.Characters.AddRangeAsync(characters, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+            
             _log.LogInformation($"Batch {page} processed with {characters.Length} entries.");
             
             if (page == characterResponse.Info.Pages)
@@ -63,6 +66,7 @@ public class ScraperService : IScraperService
     {
         Location? location = null;
 
+        // In case on unknown location the location url is empty
         if (!string.IsNullOrWhiteSpace(characterDto.Location.Url)) 
         {
             var locationDto = await _rickAndMortyApiClient.GetLocationAsync(characterDto.Location.Url, cancellationToken);

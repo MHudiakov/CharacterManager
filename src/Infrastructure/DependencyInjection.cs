@@ -2,6 +2,7 @@
 using Infrastructure.Cache;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +19,7 @@ public static class DependencyInjection
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         services.AddScoped<ApplicationDbContextInitializer>();
 
-        services.AddMemoryCache();
+        services.AddSingleton<MemoryCache>();
 
         services.AddScoped<ICacheService, CacheService>();
 

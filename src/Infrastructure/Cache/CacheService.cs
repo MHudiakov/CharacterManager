@@ -4,21 +4,23 @@ using Microsoft.Extensions.Caching.Memory;
 namespace Infrastructure.Cache;
 
 // For now, we set memory cache, but to make it future-proof and potentially to move it to distributed cache (Redis), we make operations async. 
-public class CacheService(IMemoryCache memoryCache) : ICacheService
+public class CacheService(MemoryCache memoryCache) : ICacheService
 {
-    public async Task<T?> GetCachedDataAsync<T>(string key)
+    public Task<T?> GetCachedDataAsync<T>(string key)
     {
-        memoryCache.TryGetValue(key, out T value);
-        return value;
+        memoryCache.TryGetValue(key, out T? value);
+        return Task.FromResult(value);
     }
 
-    public async Task SetCacheAsync<T>(string key, T value, TimeSpan expiration)
+    public Task SetCacheAsync<T>(string key, T value, TimeSpan expiration)
     {
         memoryCache.Set(key, value, expiration);
+        return Task.CompletedTask;
     }
 
-    public async Task ClearCacheAsync(string key)
+    public Task ClearCacheAsync()
     {
-        memoryCache.Remove(key);
+        memoryCache.Clear();
+        return Task.CompletedTask;
     }
 }
