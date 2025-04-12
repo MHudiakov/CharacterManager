@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
-public class CharacterController : ApiController
+public class GetCharactersWithPagination : ApiController
 {
     [HttpGet]
     [ProducesResponseType(typeof(PaginatedList<CharacterDto>), 200)]
