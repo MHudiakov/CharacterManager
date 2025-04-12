@@ -9,10 +9,8 @@ internal class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<CharacterDto, Character>()
-            .ForMember(dest => dest.Location, opt => opt.Ignore())
-            .ForMember(dest => dest.Id, opt => opt.Ignore());
-        
-        CreateMap<LocationDto, Location>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore());
+            .ForMember(dest => dest.Location, opt => opt.Ignore());
+
+        CreateMap<LocationDto, Location>();
     }
 }

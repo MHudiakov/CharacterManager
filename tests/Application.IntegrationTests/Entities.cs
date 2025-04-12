@@ -11,6 +11,7 @@ public static class Entities
         [
             new()
             {
+                Id = 1,
                 Name = "Tim",
                 Species = "Human",
                 Gender = Gender.Male,
@@ -18,6 +19,7 @@ public static class Entities
             },
             new()
             {
+                Id = 2,
                 Name = "Ben",
                 Species = "Human",
                 Gender = Gender.Male,
@@ -32,6 +34,7 @@ public static class Entities
         [
             new()
             {
+                Id = 1,
                 Name = "Earth",
                 Type = "Earth type"
             }

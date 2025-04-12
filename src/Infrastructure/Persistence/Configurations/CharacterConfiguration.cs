@@ -10,6 +10,9 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character>
     {
         builder.HasKey(c => c.Id);
 
+        builder.Property(l => l.Id)
+            .ValueGeneratedNever();
+
         builder.Property(c => c.Name).IsRequired();
         builder.Property(c => c.Species).IsRequired();
         builder.Property(c => c.Gender).IsRequired();

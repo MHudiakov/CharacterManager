@@ -24,10 +24,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Character", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -53,10 +50,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Location", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Dimension")
                         .HasColumnType("nvarchar(max)");
