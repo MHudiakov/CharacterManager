@@ -41,7 +41,8 @@ public class GetCharactersByLocationQueryHandler : IRequestHandler<GetCharacters
 
         var charactersQuery = _context.Characters
             .Include(c => c.Location)
-            .Where(c => c.Location != null && c.Location.Name.ToUpper() == request.Location.ToUpper())
+            // No need to use .ToLower() since SQL Server is case-insensitive by default, besides, .ToLower() can bypass index scan
+            .Where(c => c.Location != null && c.Location.Name == request.Location)
             .AsNoTracking();
 
         var totalCount = await charactersQuery.CountAsync(cancellationToken);
